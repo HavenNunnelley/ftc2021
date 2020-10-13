@@ -27,17 +27,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import java.util.List;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
+import java.util.List;
 
 /**
  * This 2020-2021 OpMode illustrates the basics of using the TensorFlow Object Detection API to
@@ -50,7 +52,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-@Disabled
+//@Disabled
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
@@ -69,8 +71,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
-
+            "ATiC+z7/////AAABmXtA5vl7V0d0gQ4DVekIFZshpexpsey81tveHMKnl6UM/8RhLS9Y46sTtV8cNxkXG73m6igcTqMDrY4lOw0d9h0IvUNC2J5hf2/HfFx7ky9u8KTxh5aBkcTLUgon942jVe1udZoCjWh8k5U3c2Bg0mNiLBS93Y/KuYq9BOteOWfgY3L+igxnD0KnUwY5fhBLKlXR3wNllTnE5Wwhw+NxEzyMi/lzKKRdogcLzNoEGtZ5+pRHJ0JYWxY+n2/KLr6lx3qxz3saTxJNG45SBCUo/li/nLjNYD0oHz7dW5lzTZlLGHRt6AP8bq6lRK7xXZUTeZj/+eqAPqI8l/cM/fa4CmUQ+rqvMYfQcleIfVS8KvsP";
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.

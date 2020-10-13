@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Helper;
 
         import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.DcMotorEx;
         import com.qualcomm.robotcore.hardware.Gamepad;
         import com.qualcomm.robotcore.hardware.HardwareMap;
         import com.qualcomm.robotcore.util.Range;
@@ -16,10 +17,10 @@ public class MoveHelper extends OperationHelper {
 
     private static final double ENCODER_POWER_LEVEL = 1;
     // declares the motors; gives them names we will use to call them later
-    private DcMotor FLMotor;
-    private DcMotor FRMotor;
-    private DcMotor BLMotor;
-    private DcMotor BRMotor;
+    private DcMotorEx FLMotor;
+    private DcMotorEx FRMotor;
+    private DcMotorEx BLMotor;
+    private DcMotorEx BRMotor;
     private boolean isPositionValid;
     public double encoderPowerLevel = 1;
     public boolean joystickJacob = true;
@@ -33,10 +34,16 @@ public class MoveHelper extends OperationHelper {
     }
 
     public void init( ) {
-        FLMotor = hardwareMap.dcMotor.get("FL");
-        FRMotor = hardwareMap.dcMotor.get("FR");
-        BLMotor = hardwareMap.dcMotor.get("BL");
-        BRMotor = hardwareMap.dcMotor.get("BR");
+        //FLMotor = hardwareMap.dcMotor.get("FL");
+        //FRMotor = hardwareMap.dcMotor.get("FR");
+        //BLMotor = hardwareMap.dcMotor.get("BL");
+        //BRMotor = hardwareMap.dcMotor.get("BR");
+
+        FLMotor = hardwareMap.get(DcMotorEx.class, "FL");
+        FRMotor = hardwareMap.get(DcMotorEx.class, "FR");
+        BLMotor = hardwareMap.get(DcMotorEx.class, "BL");
+        BRMotor = hardwareMap.get(DcMotorEx.class, "BR");
+
         BLMotor.setDirection(DcMotor.Direction.REVERSE);
         FLMotor.setDirection(DcMotor.Direction.REVERSE);
         FLMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -66,11 +73,14 @@ public class MoveHelper extends OperationHelper {
         double br = ly - lx + rx;
 
         double max = Math.max(Math.max(fl, fr), Math.max(bl, br));
-        if (max > 1) {
-            fl = fl / max;
-            fr = fr / max;
-            bl = bl / max;
-            br = br / max;
+        double min = Math.min(Math.min(fl, fr), Math.min(bl, br));
+
+        if (max > 1 || min < 1) {
+            double factor = Math.max(max, Math.abs(min));
+            fl = fl / factor;
+            fr = fr / factor;
+            bl = bl / factor;
+            br = br / factor;
         }
 
         String output = String.format("%1$.3f,%1$.3f,%1$.3f,%1$.3f",fl,fr,bl,br);
@@ -78,8 +88,8 @@ public class MoveHelper extends OperationHelper {
         // sets power to the motors
         FLMotor.setPower(fl);
         FRMotor.setPower(fr);
-        BLMotor.setPower(bl*.85);
-        BRMotor.setPower(br*.85);
+        BLMotor.setPower(bl);
+        BRMotor.setPower(br);
 
     }
 
@@ -203,16 +213,9 @@ public class MoveHelper extends OperationHelper {
         double LX;
         double RX;
 
-        // Jacob wants the sticks reversed for driving.
-        if (joystickJacob) {
             LY = gamepad1.left_stick_y*powerMultiple;
             LX = gamepad1.left_stick_x*powerMultiple;
             RX = gamepad1.right_stick_x*powerMultiple;
-        } else {
-            LY = gamepad1.right_stick_y*powerMultiple;
-            LX = gamepad1.right_stick_x*powerMultiple;
-            RX = gamepad1.left_stick_x*powerMultiple;
-        }
 
         if (gamepad1.a) {
             SetLowPower();
