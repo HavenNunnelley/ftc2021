@@ -21,7 +21,7 @@ public class MoveHelper extends OperationHelper {
     private DcMotorEx FRMotor;
     private DcMotorEx BLMotor;
     private DcMotorEx BRMotor;
-    private boolean isPositionValid;
+    public boolean isPositionValid;
     public double encoderPowerLevel = 1;
     public boolean joystickJacob = true;
     public boolean displayMoveOutputs = true;
@@ -147,7 +147,7 @@ public class MoveHelper extends OperationHelper {
         BLMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FRMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FLMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        isPositionValid = false;
+        isPositionValid = false;                                    //Is this false supposed to be a true?
     }
     public void runUsingEncoders (){
         BRMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -186,7 +186,7 @@ public class MoveHelper extends OperationHelper {
     }
 
     public void runMotorsToPosition(int flPos, int frPos, int brPos, int blPos){
-        if (!isPositionValid) {
+        if (!isPositionValid) {               //Talk to Will about this. It broke Thursday he was gone.
             runOneMotor(FLMotor, flPos);
             runOneMotor(FRMotor, frPos);
             runOneMotor(BRMotor, brPos);

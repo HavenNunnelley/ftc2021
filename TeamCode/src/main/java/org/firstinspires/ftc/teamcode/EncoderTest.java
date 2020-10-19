@@ -85,11 +85,12 @@ public class EncoderTest extends OpMode{
         switch (state) {
             case 0:
                 lastTime = getRuntime();
+                moveHelper.resetEncoders();
                 state = 5;
                 break;
             case 5:
                 advanceToStateAfterTime(10,2);
-                moveHelper.runMotorsToPosition(-600,-600,-600,-600);
+                moveHelper.runMotorsToPosition(-900,-900,-900,-900);
                 break;
             case 10:
                 moveHelper.resetEncoders();
@@ -137,6 +138,7 @@ public class EncoderTest extends OpMode{
         telemetry.addData("Blue", sensorColor.blue()); */
         telemetry.addData("State", state);
         telemetry.addData("ringdetection", lastRecognitionType);
+        moveHelper.showEncoderValues();
         telemetry.update();
     }
 
