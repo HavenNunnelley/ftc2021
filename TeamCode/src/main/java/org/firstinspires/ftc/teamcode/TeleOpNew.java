@@ -26,7 +26,7 @@ public class TeleOpNew extends OpMode{
         if (moveHelper == null){
             moveHelper = new MoveHelper(telemetry, hardwareMap);
         }
-        if (gamepad1.a){ // Left stick is cardinal moves, rotation on right
+        if (gamepad1.a){ // Left stick is cardinal moves, rotation on righton
             moveHelper.joystickJacob = true;
             telemetry.addData("Joystick setup", " Jacob's Way");
         }
@@ -41,7 +41,7 @@ public class TeleOpNew extends OpMode{
 
         if (!gamepad1.a && !gamepad1.y && !gamepad1.b && !gamepad1.x) {
             moveHelper.checkTeleOp(gamepad1, gamepad2);
-        }
+    }
         else {
             //imuHelper.checkTeleOp(gamepad1, gamepad2);
             double LY = gamepad1.left_trigger / 2 - gamepad1.right_trigger / 2;

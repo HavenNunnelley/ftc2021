@@ -8,6 +8,7 @@ package org.firstinspires.ftc.teamcode;
         import org.firstinspires.ftc.teamcode.Helper.MoveHelper;
         import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+        import com.vuforia.Device;
 
         import java.util.Base64;
         import java.util.List;
@@ -90,7 +91,7 @@ public class EncoderTest extends OpMode{
                 break;
             case 5:
                 advanceToStateAfterTime(10,2);
-                moveHelper.runMotorsToPosition(-900,-900,-900,-900);
+                moveHelper.runMotorsToPosition(-1100,-1100,-1100,-1100);
                 break;
             case 10:
                 moveHelper.resetEncoders();
@@ -107,29 +108,70 @@ public class EncoderTest extends OpMode{
                 }
                 break;
             case 100:
-                moveHelper.runMotorsToPosition(-3400,-3400,-3400,-3400);
+                moveHelper.runMotorsToPosition(-1800,-1800,-1800,-1800);
                 advanceToStateAfterTime(45,3);
                 break;
             case 105:
                 moveHelper.resetEncoders();
+                state = 110;
+                break;
+            case 110:
+                moveHelper.runMotorsToPosition(-200,-200,-200,-200);
+                advanceToStateAfterTime(115,1);
+                break;
+            case 115:
+                moveHelper.resetEncoders();
                 state = 1050;
                 break;
             case 200:
-                moveHelper.runMotorsToPosition(-4600,-4600,-4600,-4600);
+                moveHelper.runMotorsToPosition(-3000,-3000,-3000,-3000);
                 advanceToStateAfterTime(205,4);
                 break;
             case 205:
                 moveHelper.resetEncoders();
+                state = 220;
+                break;
+            case 220:
+                moveHelper.runMotorsToPosition(-900,900,900,-900);
+                advanceToStateAfterTime(225,2);
+                break;
+            case 225: //put wobble down, not in yet
+                moveHelper.resetEncoders();
+                state = 230;
+                break;
+            case 230:
+                moveHelper.runMotorsToPosition(900,-900,-900,900);
+                advanceToStateAfterTime(235,2);
+                break;
+            case 235:
+                moveHelper.resetEncoders();
+                state = 240;
+                break;
+            case 240:
+                moveHelper.runMotorsToPosition(600,600,600,600);
+                advanceToStateAfterTime(245,1);
+                break;
+            case 245:
+                moveHelper.resetEncoders();
                 state = 2050;
                 break;
             case 300:
-                moveHelper.runMotorsToPosition(-5400,-5400,-5400,-5400);
+                moveHelper.runMotorsToPosition(-3800,-3800,-3800,-3800);
                 advanceToStateAfterTime(305,5);
                 break;
             case 305:
                 moveHelper.resetEncoders();
+                state = 310;
+                break;
+            case 310:
+                moveHelper.runMotorsToPosition(1400, 1400, 1400, 1400);
+                advanceToStateAfterTime(315,2);
+                break;
+            case 315:
+                moveHelper.resetEncoders();
                 state = 3050;
                 break;
+
         }
 
 
